@@ -1,0 +1,6 @@
+displayName: IP-API Middleware
+type: middleware
+import: github.com/EAtrafego/traefik-ipapi-middleware
+summary: Adds geolocation headers using ip-api.com
+testData:
+  headerPrefix: Geo-
