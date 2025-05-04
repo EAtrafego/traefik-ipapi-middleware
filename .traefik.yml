@@ -1,6 +1,12 @@
-displayName: IP-API Middleware
+displayName: IPAPI Middleware
 type: middleware
+
 import: github.com/EAtrafego/traefik-ipapi-middleware
-summary: Adds geolocation headers using ip-api.com
+
+summary: "Middleware para Traefik que injeta cabeçalhos de geolocalização baseados em IP, utilizando a API ipapi.co."
+
 testData:
-  headerPrefix: Geo-
+  fields: country, city, ip            # Lista de campos a serem inseridos no header
+  headerPrefix: X-IPAPI-               # Prefixo dos headers inseridos
+  ipSource: RemoteAddr                 # Fonte do IP a ser analisado (RemoteAddr ou cabeçalho personalizado)
+  apiURL: https://ipapi.co             # URL base da API utilizada
