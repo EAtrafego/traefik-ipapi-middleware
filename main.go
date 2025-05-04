@@ -1,4 +1,4 @@
-package main
+package traefik_ipapi_middleware
 
 import (
     "context"
