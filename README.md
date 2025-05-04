@@ -21,5 +21,5 @@ Adicione o plugin ao `traefik.yml`:
 experimental:
   plugins:
     ipapi:
-      moduleName: github.com/seu-usuario/traefik-ipapi-middleware
+      moduleName: github.com/EAtrafego/traefik-ipapi-middleware
       version: v0.1.0
