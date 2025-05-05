@@ -3,6 +3,7 @@ package traefik_ipapi_middleware
 import (
     "context"
     "encoding/json"
+    "net"
     "net/http"
     "strconv"
 )
@@ -37,9 +38,14 @@ func New(ctx context.Context, next http.Handler, config *Config, name string) (h
 
 // ServeHTTP processa a requisição
 func (m *IPAPIMiddleware) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-    clientIP := req.RemoteAddr
-    if forwardedFor := req.Header.Get("X-Forwarded-For"); forwardedFor != "" {
-        clientIP = forwardedFor
+    clientIP := req.Header.Get("X-Forwarded-For")
+    if clientIP == "" {
+        ip, _, err := net.SplitHostPort(req.RemoteAddr)
+        if err != nil {
+            m.next.ServeHTTP(rw, req)
+            return
+        }
+        clientIP = ip
     }
 
     resp, err := http.Get("http://ip-api.com/json/" + clientIP)
