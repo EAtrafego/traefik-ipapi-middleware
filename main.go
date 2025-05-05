@@ -77,6 +77,7 @@ func (m *IPAPIMiddleware) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
     req.Header.Set(m.config.HeaderPrefix+"Country", result.Country)
     req.Header.Set(m.config.HeaderPrefix+"Country-Code", result.CountryCode)
     req.Header.Set(m.config.HeaderPrefix+"Region", result.RegionName)
+    req.Header.Set(m.config.HeaderPrefix+"Region-Code", result.Region)
     req.Header.Set(m.config.HeaderPrefix+"City", result.City)
     req.Header.Set(m.config.HeaderPrefix+"Zip", result.Zip)
     req.Header.Set(m.config.HeaderPrefix+"Latitude", strconv.FormatFloat(result.Lat, 'f', 6, 64))
